@@ -5,6 +5,9 @@ Created on Tue Dec  7 12:19:15 2021
 
 @author: apple
 """
+def test_func(a):
+    return a
+
 
 def clean_text(txt_in):
     import re
