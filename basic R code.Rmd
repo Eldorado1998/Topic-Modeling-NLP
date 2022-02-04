@@ -1,0 +1,194 @@
+---
+title: "Base R"
+author: "Yingzhi Zhang"
+date: "2/1/2022"
+output: html_document
+---
+https://www.rstudio.com/products/rstudio/download/#download
+https://cran.r-project.org/bin/windows/base/
+https://cran.r-project.org/bin/macosx/
+
+# Header
+## The number of pound sign determines the font size
+
+
+```{r}
+# Variable assignment
+x = 1 #equal sign
+y <- 2 #less than sign + dash
+
+print(x)
+print(y)
+```
+
+```{r}
+# Add comments in a code chunk
+# All text after the pound sign "#" within the same line is considered a comment
+```
+
+```{r}
+# install.packages
+install.packages("aws.s3")
+```
+
+
+```{r}
+# load packages (library: the directory where packages are stored)
+library(aws.s3)
+```
+
+```{r}
+# basic data type
+
+# 1. numeric: decimal values
+x1 = 1.1
+class(x1)
+
+# assign an integer to a variable, it's still being saved as a numeric variable
+x2 = 1
+class(x2)
+is.integer(x2)
+```
+
+
+```{r}
+# 2. integer
+# coerce a numeric value into an integer
+x2 = as.integer(x2)
+class(x2)
+
+# coerce a string for decimal values into an integer
+x3 = "123"
+x4 = as.integer(x3)
+class(x3)
+class(x4)
+
+# the numeric value of True/False
+x5 = as.integer(TRUE)
+x5
+x6 = as.integer(FALSE)
+x6
+```
+
+
+```{r}
+# 3. logical: created via comparison between variables
+x = 1
+y = 2
+a = x > y
+print(a)
+b = x < y
+print(b)
+
+# logical operations
+# or:|
+# and: &
+# not: !
+c = a|b
+print(c)
+d = a&b
+print(d)
+```
+
+```{r}
+# 4. character
+# convert other objects to character values
+x7 = as.character(3.14)
+class(x7)
+
+# concatenate characters
+x8 = paste("cat", "dog")
+print(x8)
+x9 = paste0("cat", "dog")
+print(x9)
+```
+
+```{r}
+# vector: a sequence of data elements of the same basic type
+
+c(1,2,3)
+# a vector of logic values
+c(TRUE, FALSE, TRUE, FALSE, FALSE)
+# a vector of strings
+c("aa", "bb", "cc")
+
+# number of elements
+length(c("aa", "bb", "cc", "dd", "ee"))
+
+# vector arithmetics
+d = c(1,2,3,4)
+print(5*d)
+
+e = c(1,1,1,1)
+print(d + e)
+
+# vector index: 1 based
+d[3]
+
+# range index: produce a vector slice between two indexes
+d[1:2]
+
+#negative index: strip the element
+d[-1]
+```
+
+```{r}
+# list: generic vector containing different type of objects
+f = list(c(1,2,3), c("a","b","c"))
+class(f)
+
+#reference a list member
+f[[2]][1]
+```
+
+```{r}
+# dataframe: used for storing data tables, a list of vectors of equal length
+
+# create a dataframe
+n = c(2, 3, 5) 
+s = c("aa", "bb", "cc") 
+m = c(TRUE, FALSE, TRUE) 
+df = data.frame(n, s, m)
+print(df)
+
+# retrieve data (row position, column position)
+df[1,2]
+
+# get the number of rows/columns
+nrow(df)
+ncol(df)
+```
+
+
+```{r}
+# retrieve column vectors
+df[ ,'n']
+df[['n']]
+df$n     
+
+# retrieve a column slice
+df['n']  #return a dataframe of a single column
+df[1]
+df[c('n','s')]
+
+# retrieve a row slice
+df[1,]
+```
+
+
+```{r}
+# import data
+# import csv file (comma separated values (CSV) format)
+t = read.csv("/Users/apple/Desktop/bank.data.csv") #full path of the document
+print(t)
+head(t,n=5)
+
+#import spread sheet (xlsx) file
+l = readxl::read_xlsx("/Users/apple/Desktop/roster_github.xlsx")
+l
+#There may be multiple functions with the same name in multiple packages. The double colon operator allows you to specify the specific function you want: package::functionname
+```
+
+
+
+
